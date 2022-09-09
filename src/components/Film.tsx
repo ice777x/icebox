@@ -1,7 +1,5 @@
-import { valueToPercent } from "@mui/base";
 import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
 
 interface Data {
     imdb: string;
@@ -18,7 +16,7 @@ const Film: React.FC = () => {
     React.useEffect(() => {
         if (effectRen.current === false) {
             const fetchData = async () => {
-                const veri = await fetch("http://20.14.91.241:5000/film");
+                const veri = await fetch("http://localhost:5000/film");
                 const f_data = await veri.json();
                 setData(f_data.data);
             };
@@ -37,7 +35,6 @@ const Film: React.FC = () => {
             const response = await axios.get("/api/suggestion?query=" + search);
             const d_data = await response;
             console.log(d_data);
-            // return data.suggestions;
         };
         get_search_films(value);
     };
@@ -46,8 +43,7 @@ const Film: React.FC = () => {
         <div className="flex-1 max-w-8xl p-10">
             <div className="wrapper grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-flow-row  gap-8">
                 {data
-                    ? // ? Object.entries(data).map(([key, value], i) => {
-                      data?.map((value, i) => {
+                    ? data?.map((value, i) => {
                           return (
                               <div
                                   key={i}

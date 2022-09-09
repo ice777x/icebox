@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 export default function Header() {
     return (
         <nav className="navigate backdrop-blur shadow sticky lg:border-b bg-gray-900 z-40 hover:z-50 dark:bg-slate-900/75 supports-backdrop-blur:bg-white/60 flex-none  lg:px-8 top-0 transition-colors duration-500 border-slate-50/[0.06] w-full">
