@@ -5,7 +5,9 @@ function App() {
     const [data, setData] = React.useState<any>(null);
     React.useEffect(() => {
         const fetchData = async () => {
-            const veri = await axios.get("http://20.14.91.241/api/film/last");
+            const veri = await axios.get(
+                "http://20.14.91.241:5000/api/film/last"
+            );
             const v_data = await veri.data;
             if (v_data) {
                 setData(v_data);

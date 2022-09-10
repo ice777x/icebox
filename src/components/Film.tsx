@@ -16,7 +16,9 @@ const Film: React.FC = () => {
     React.useEffect(() => {
         if (effectRen.current === false) {
             const fetchData = async () => {
-                const veri = await axios.get("http://20.14.91.241/api/film");
+                const veri = await axios.get(
+                    "http://20.14.91.241:5000/api/film"
+                );
                 const f_data = await veri.data;
                 setData(f_data.data);
             };
