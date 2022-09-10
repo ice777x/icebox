@@ -17,7 +17,7 @@ const FilmPlayer = () => {
     React.useEffect(() => {
         async function fetchData() {
             const veri = await fetch(
-                "http://localhost:5000/film/search?q=" + url
+                "http://localhost:5000/api/film/search?q=" + url
             );
             const f_data = await veri.json();
             setData(f_data);

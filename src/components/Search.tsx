@@ -8,7 +8,7 @@ const Search = () => {
         if (value === "") {
             const get_last_film = async () => {
                 const response = await axios.get(
-                    "http://localhost:5000/film/last"
+                    "http://20.14.91.241/api/film/last"
                 );
                 const data = await response.data;
                 setData(data);
@@ -17,7 +17,7 @@ const Search = () => {
         } else {
             const get_search_films = async (search: string) => {
                 const response = await axios.get(
-                    "http://localhost:5000/film/search?q=" + search
+                    "http://20.14.91.241/api/film/search?q=" + search
                 );
                 const data = await response.data;
                 if (data) {
@@ -39,40 +39,42 @@ const Search = () => {
                     onChange={handleChange}
                 />
                 <div className="flex w-full flex-row flex-wrap gap-y-10 my-5 gap-x-2 mx-auto">
-                    {data
-                        ? data.map((value: any, i: number) => {
-                              return (
-                                  <>
-                                      <hr className="w-full border-slate-400" />
-                                      <div
-                                          key={i}
-                                          className=" text-slate-500 hover:text-slate-200 shadow-xl mx-auto bg-slate-800/15 hover:bg-slate-800/20"
-                                      >
-                                          <a
-                                              href={"/film/" + value.title[0]}
-                                              className=""
-                                          >
-                                              <div className="img  justify-center aspect-square flex">
-                                                  <img
-                                                      src={value.img}
-                                                      alt={value.title}
-                                                      loading="lazy"
-                                                  />
-                                              </div>
-                                              <div className="flex py-2 h-fit flex-wrap space-y-2 justify-center text-center flex-col text-sm">
-                                                  <p className="flex-1">
-                                                      {value.title[0]}
-                                                  </p>
-                                                  <p className="flex-1">
-                                                      {value.title[1]}
-                                                  </p>
-                                              </div>
-                                          </a>
-                                      </div>
-                                  </>
-                              );
-                          })
-                        : null}
+                    {data ? (
+                        <>
+                            <hr className="w-full border-slate-400" />
+                            {data.map((value: any, i: number) => {
+                                return (
+                                    <>
+                                        <div
+                                            key={i}
+                                            className=" text-slate-500 hover:text-slate-200 shadow-xl mx-auto bg-slate-800/15 hover:bg-slate-800/20"
+                                        >
+                                            <a
+                                                href={"/film/" + value.title[0]}
+                                                className=""
+                                            >
+                                                <div className="img  justify-center aspect-square flex">
+                                                    <img
+                                                        src={value.img}
+                                                        alt={value.title}
+                                                        loading="lazy"
+                                                    />
+                                                </div>
+                                                <div className="flex py-2 h-fit flex-wrap space-y-2 justify-center text-center flex-col text-sm">
+                                                    <p className="flex-1">
+                                                        {value.title[0]}
+                                                    </p>
+                                                    <p className="flex-1">
+                                                        {value.title[1]}
+                                                    </p>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    </>
+                                );
+                            })}
+                        </>
+                    ) : null}
                 </div>
             </div>
         </div>
