@@ -8,7 +8,7 @@ const Search = () => {
         if (value === "") {
             const get_last_film = async () => {
                 const response = await axios.get(
-                    "http://20.14.91.241/api/film/last"
+                    "http://20.14.91.241:5000/api/film/last"
                 );
                 const data = await response.data;
                 setData(data);
@@ -17,7 +17,7 @@ const Search = () => {
         } else {
             const get_search_films = async (search: string) => {
                 const response = await axios.get(
-                    "http://20.14.91.241/api/film/search?q=" + search
+                    "http://20.14.91.241:5000/api/film/search?q=" + search
                 );
                 const data = await response.data;
                 if (data) {
