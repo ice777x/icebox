@@ -50,31 +50,31 @@ const FilmPlayer = () => {
                         <div className="header text-xl flex border-b-2 border-slate-400 w-full p-2">
                             Film Bilgileri
                         </div>
-                        <div className="film-image flex-1 sm:basis-1/5 w-60 my-3 sm:w-80 mr-3 aspect-auto sm:aspect-square justify-center items-center flex-shrink">
+                        <div className="film-image object-cover sm:basis-3/7 flex my-3 w-full sm:w-max mr-3  justify-center items-start flex-shrink">
                             <img
                                 src={vid_data.img}
                                 alt={vid_data.titles[0]}
                                 loading="lazy"
-                                className="sm:w-64"
+                                className="w-max"
                             />
                         </div>
-                        <div className="w-full basis-3/5">
+                        <div className="w-full sm:basis-3/5 mt-4 p-2 sm:p-0">
                             <div className="film-isim">
-                                <span className="text-sky-800">Film Adı</span>
+                                <span className="text-sky-600">Film Adı</span>
                                 {": " +
                                     vid_data.titles[0] +
                                     " - " +
                                     vid_data.titles[1]}
                             </div>
                             <div className="description ">
-                                <span className="text-sky-800">Film Özeti</span>
+                                <span className="text-sky-600">Film Özeti</span>
                                 : {vid_data.description}
                             </div>
                             {Object.entries(vid_data.details).map(
                                 ([k, v]: any, i: number) => {
                                     return (
                                         <div key={i}>
-                                            <span className="text-sky-800">
+                                            <span className="text-sky-600">
                                                 {k}
                                             </span>
                                             : {v}

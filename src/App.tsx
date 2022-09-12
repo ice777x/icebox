@@ -18,7 +18,7 @@ function App() {
     return (
         <>
             <div className="flex sm:container w-full mx-auto">
-                <div className="flex-wrap flex-col gap-8 text-white ">
+                <div className="flex-wrap w-full flex-col gap-8 text-white ">
                     <div className="flex my-auto mb-2 lg:w-[calc(80%)] mx-auto h-10 items-end">
                         <h1 className="text-xl">Son Eklenenler</h1>
                     </div>
@@ -43,7 +43,7 @@ function App() {
                                                       className="rounded-t-lg"
                                                   />
                                               </div>
-                                              <div className="justify-center text-center my-1 text-sm">
+                                              <div className="justify-center text-center my-1 overflow-clip text-sm">
                                                   <p className="flex-1">
                                                       {value.title}
                                                   </p>

@@ -40,20 +40,18 @@ const Film: React.FC = () => {
                               >
                                   <a
                                       href={"/film/" + value.title}
-                                      className="flex flex-col overflow-auto"
+                                      className="flex flex-col w-48"
                                   >
-                                      <div className="img justify-center flex">
+                                      <div className="img justify-center  w-full flex object-fill">
                                           <img
                                               src={value.img}
                                               alt={value.title}
                                               loading="lazy"
-                                              className="rounded-t-lg"
+                                              className="rounded-t-lg w-full"
                                           />
                                       </div>
-                                      <div className="py-1 h-fit  flex-wrap space-y-2 justify-center text-center flex-col text-sm">
-                                          <p className="flex-1">
-                                              {value.title}
-                                          </p>
+                                      <div className="py-1 h-fit overflow-clip  flex-wrap w-full space-y-2 flex-col justify-center text-center  text-sm">
+                                          <p className="">{value.title}</p>
                                       </div>
                                   </a>
                               </div>
