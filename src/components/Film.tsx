@@ -28,46 +28,31 @@ const Film: React.FC = () => {
             };
         }
     }, [data]);
-
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { value } = e.target;
-        if (value === "") {
-        }
-        const get_search_films = async (search: string) => {
-            const response = await axios.get("/api/suggestion?query=" + search);
-            const d_data = await response;
-            console.log(d_data);
-        };
-        get_search_films(value);
-    };
-
     return (
-        <div className="flex-1 max-w-8xl p-10">
-            <div className="wrapper grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 grid-flow-row  gap-8">
+        <div className="max-w-8xl p-10">
+            <div className="wrapper flex flex-row flex-wrap gap-8 w-[calc(80%)] mx-auto">
                 {data
-                    ? data?.map((value, i) => {
+                    ? Object.entries(data).map(([k, value], i) => {
                           return (
                               <div
                                   key={i}
-                                  className=" text-slate-500 hover:text-slate-200 shadow-xl bg-slate-800/15 hover:bg-slate-800/20"
+                                  className=" text-slate-500 mx-auto hover:text-slate-200 rounded-lg shadow-xl bg-slate-800/15 hover:bg-slate-800/20"
                               >
                                   <a
-                                      href={"/film/" + value.title[0]}
-                                      className=""
+                                      href={"/film/" + value.title}
+                                      className="flex flex-col overflow-auto"
                                   >
-                                      <div className="img  justify-center aspect-square flex">
+                                      <div className="img justify-center flex">
                                           <img
                                               src={value.img}
                                               alt={value.title}
                                               loading="lazy"
+                                              className="rounded-t-lg"
                                           />
                                       </div>
-                                      <div className="flex py-2 h-fit flex-wrap space-y-2 justify-center text-center flex-col text-sm">
+                                      <div className="py-1 h-fit  flex-wrap space-y-2 justify-center text-center flex-col text-sm">
                                           <p className="flex-1">
-                                              {value.title[0]}
-                                          </p>
-                                          <p className="flex-1">
-                                              {value.title[1]}
+                                              {value.title}
                                           </p>
                                       </div>
                                   </a>

@@ -10,42 +10,42 @@ function App() {
             );
             const v_data = await veri.data;
             if (v_data) {
-                setData(v_data);
+                setData(v_data.data);
             }
         };
         fetchData();
     }, []);
     return (
         <>
-            <div className="flex-1 mx-auto p-10 max-w-7xl">
-                <div className="md:container flex flex-wrap flex-col gap-8 text-white ">
-                    <h1 className="text-xl">Son Eklenenler</h1>
-                    <hr />
-                    <div className="wrapper grid grid-cols-2 sm:grid-cols-4 w-full gap-y-10 sm:gap-x-2 mx-auto">
+            <div className="flex sm:container w-full mx-auto">
+                <div className="flex-wrap flex-col gap-8 text-white ">
+                    <div className="flex my-auto mb-2 lg:w-[calc(80%)] mx-auto h-10 items-end">
+                        <h1 className="text-xl">Son Eklenenler</h1>
+                    </div>
+                    <div className="border-b-2 lg:w-[calc(80%)] mx-auto border-slate-600" />
+                    <div className="wrapper container flex flex-wrap flex-row lg:w-[calc(80%)] w-full my-10 gap-y-10 sm:gap-x-2 mx-auto">
                         {data
                             ? data.map((value: any, i: number) => {
                                   return (
                                       <div
                                           key={i}
-                                          className=" text-slate-500 hover:text-slate-200 shadow-xl mx-auto bg-slate-800/15 hover:bg-slate-800/20"
+                                          className=" text-slate-500 hover:text-slate-200 rounded-lg shadow-xl mx-auto bg-slate-800/15 hover:bg-slate-800/20"
                                       >
                                           <a
-                                              href={"/film/" + value.title[0]}
-                                              className=""
+                                              href={"/film/" + value.title}
+                                              className="flex-flex-col overflow-auto"
                                           >
-                                              <div className="img  justify-center aspect-square flex">
+                                              <div className="img  justify-center  flex">
                                                   <img
                                                       src={value.img}
                                                       alt={value.title}
                                                       loading="lazy"
+                                                      className="rounded-t-lg"
                                                   />
                                               </div>
-                                              <div className="flex py-2 h-fit flex-wrap space-y-2 justify-center text-center flex-col text-sm">
+                                              <div className="justify-center text-center my-1 text-sm">
                                                   <p className="flex-1">
-                                                      {value.title[0]}
-                                                  </p>
-                                                  <p className="flex-1">
-                                                      {value.title[1]}
+                                                      {value.title}
                                                   </p>
                                               </div>
                                           </a>

@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
 
@@ -10,29 +11,34 @@ interface Data {
     year: string;
 }
 const FilmPlayer = () => {
-    const { url } = useParams<any>();
+    const { url } = useParams<string>();
     const [data, setData]: any = React.useState<
         [key: string, value: string] | null
     >(null);
     React.useEffect(() => {
         async function fetchData() {
-            const veri = await fetch(
-                "http://20.14.91.241:5000/api/film/search?q=" + url
-            );
-            const f_data = await veri.json();
-            setData(f_data);
+            const veri = await axios.get("http://20.14.91.241:5000/api/film/");
+            const f_data = await veri.data;
+            if (url) {
+                const q = f_data.data[url];
+                const response = await axios.get(
+                    "http://20.14.91.241:5000/api/film/video.get?url=" + q.url
+                );
+                const data = await response.data;
+                setData(data);
+            }
         }
         fetchData();
-    }, []);
+    }, [url]);
     if (data && url) {
-        const vid_data = data[0];
+        const vid_data = data.data;
         return (
-            <div>
-                <div className="flex shadow-lg flex-wrap h-[calc(100vh_-_68px)] sm:h-full max-w-8xl">
-                    <div className="justify-center  w-full ">
-                        <div className="player justify-center flex w-full aspect-auto ">
+            <div className="justify-center flex mx-auto  sm:w-[calc(90%)] ">
+                <div className="flex justify-center mx-auto w-full  shadow-slate-200 flex-wrap  h-full">
+                    <div className="justify-center p-2  w-full  flex mx-auto ">
+                        <div className="player mx-auto justify-center flex w-full ">
                             <iframe
-                                className="w-[65rem]  aspect-video "
+                                className="w-[calc(90%)] aspect-video"
                                 src={vid_data.vid}
                                 loading="lazy"
                                 scrolling="no"
@@ -40,16 +46,42 @@ const FilmPlayer = () => {
                             />
                         </div>
                     </div>
-                    <div className="details mt-auto sm:mt-auto flex flex-row sm:w-[calc(90%)] w-full text-sm sm:textbase justfiy-center sm:ml-14 sm:p-10 shadow-2xl ">
-                        <div className="film-image basis-2/5 w-40 mr-6 sm:w-72 aspect-square">
-                            <img src={vid_data.img} alt={vid_data.title} />
+                    <div className="details mt-auto sm:mt-auto flex-wrap flex flex-row  w-full text-sm   sm:text-base justfiy-center ">
+                        <div className="header text-xl flex border-b-2 border-slate-400 w-full p-2">
+                            Film Bilgileri
                         </div>
-                        <div className="w-full basis-4/5 ">
-                            <div className="header  sm:px-20 mr-5 sm:mr-0 mb-5 sm:mb-10 border-b border-slate-400">
-                                {vid_data.title[0]}
+                        <div className="film-image flex-1 sm:basis-1/5 w-60 my-3 sm:w-80 mr-3 aspect-auto sm:aspect-square justify-center items-center flex-shrink">
+                            <img
+                                src={vid_data.img}
+                                alt={vid_data.titles[0]}
+                                loading="lazy"
+                                className="sm:w-64"
+                            />
+                        </div>
+                        <div className="w-full basis-3/5">
+                            <div className="film-isim">
+                                <span className="text-sky-800">Film Adı</span>
+                                {": " +
+                                    vid_data.titles[0] +
+                                    " - " +
+                                    vid_data.titles[1]}
                             </div>
-                            <div className="year">Year: {vid_data.year}</div>
-                            <div className="imdb">IMDB: {vid_data.imdb}</div>
+                            <div className="description ">
+                                <span className="text-sky-800">Film Özeti</span>
+                                : {vid_data.description}
+                            </div>
+                            {Object.entries(vid_data.details).map(
+                                ([k, v]: any, i: number) => {
+                                    return (
+                                        <div key={i}>
+                                            <span className="text-sky-800">
+                                                {k}
+                                            </span>
+                                            : {v}
+                                        </div>
+                                    );
+                                }
+                            )}
                         </div>
                     </div>
                 </div>
