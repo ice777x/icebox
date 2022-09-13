@@ -46,7 +46,7 @@ const FilmPlayer = () => {
                             />
                         </div>
                     </div>
-                    <div className="details mt-auto sm:mt-auto flex-wrap flex flex-row  w-full text-sm   sm:text-base justfiy-center ">
+                    <div className="details mt-4 sm:mt-auto flex-wrap flex flex-row  w-full text-sm   sm:text-base justfiy-center ">
                         <div className="header text-xl flex border-b-2 border-slate-400 w-full p-2">
                             Film Bilgileri
                         </div>

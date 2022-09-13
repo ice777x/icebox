@@ -29,29 +29,31 @@ const Film: React.FC = () => {
         }
     }, [data]);
     return (
-        <div className="max-w-8xl p-10">
-            <div className="wrapper flex flex-row flex-wrap gap-8 w-[calc(80%)] mx-auto">
+        <div className="w-full">
+            <div className="wrapper flex flex-row flex-wrap gap-y-10 w-full sm:w-[calc(80%)] mx-auto">
                 {data
                     ? Object.entries(data).map(([k, value], i) => {
                           return (
                               <div
                                   key={i}
-                                  className=" text-slate-500 mx-auto hover:text-slate-200 rounded-lg shadow-xl bg-slate-800/15 hover:bg-slate-800/20"
+                                  className=" text-slate-500 mx-auto flex hover:text-slate-200 rounded-lg shadow-xl bg-slate-800/15 hover:bg-slate-800/20"
                               >
                                   <a
                                       href={"/film/" + value.title}
                                       className="flex flex-col w-48"
                                   >
-                                      <div className="img justify-center  w-full flex object-fill">
+                                      <div className="img justify-center   flex object-fill">
                                           <img
                                               src={value.img}
                                               alt={value.title}
                                               loading="lazy"
-                                              className="rounded-t-lg w-full"
+                                              className="rounded-t-lg"
                                           />
                                       </div>
                                       <div className="py-1 h-fit overflow-clip  flex-wrap w-full space-y-2 flex-col justify-center text-center  text-sm">
-                                          <p className="">{value.title}</p>
+                                          <p className="text-clip">
+                                              {value.title}
+                                          </p>
                                       </div>
                                   </a>
                               </div>

@@ -1,9 +1,12 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 export default function Header() {
+    const [click, setClick] = React.useState(false);
+    const handleClick = () => setClick(!click);
+    const closeMobileMenu = () => setClick(false);
     return (
         <nav className="navigate backdrop-blur shadow sticky lg:border-b bg-gray-900 z-40 hover:z-50 dark:bg-slate-900/75 supports-backdrop-blur:bg-white/60 flex-none  lg:px-8 top-0 transition-colors duration-500 border-slate-50/[0.06] w-full">
-            <div className="text-white py-4  text-lg max-w-8xl">
+            <div className="text-white my-4  text-lg max-w-8xl">
                 <div className="relative flex items-center">
                     <img
                         src={
@@ -12,7 +15,7 @@ export default function Header() {
                         alt=""
                         className="h-9 pl-3 mr-3"
                     />
-                    <NavLink to={"/"} className="">
+                    <NavLink to={"/"} className="text-xl">
                         icebox
                     </NavLink>
                     <div className="relative sm:flex hidden ml-auto pr-7">
@@ -52,6 +55,54 @@ export default function Header() {
                             </a>
                         </div>
                     </div>
+                    <div
+                        className="relative flex sm:hidden ml-auto pr-4"
+                        onClick={handleClick}
+                    >
+                        <i
+                            className={
+                                click ? "fa-solid fa-xmark" : "fa-solid fa-bars"
+                            }
+                        ></i>
+                    </div>
+                </div>
+                <div
+                    className={
+                        click ? "block relative w-full duration-1000" : "hidden"
+                    }
+                >
+                    {click && (
+                        <div className="transition-opacity duration-1000 static top-0 right-0 w-full  bg-white dark:bg-slate-900/75 shadow-xl">
+                            <NavLink
+                                to={"/"}
+                                className="block px-4 py-4 text-base w-full"
+                                onClick={closeMobileMenu}
+                            >
+                                Home
+                            </NavLink>
+                            <NavLink
+                                to={"/search"}
+                                className="block px-4 py-4 text-base w-full"
+                                onClick={closeMobileMenu}
+                            >
+                                Search
+                            </NavLink>
+                            <NavLink
+                                to={"/film"}
+                                className="block px-4 py-4 text-base w-full"
+                                onClick={closeMobileMenu}
+                            >
+                                Film
+                            </NavLink>
+                            <NavLink
+                                to={"/about"}
+                                className="block px-4 py-4 text-base w-full"
+                                onClick={closeMobileMenu}
+                            >
+                                About
+                            </NavLink>
+                        </div>
+                    )}
                 </div>
             </div>
         </nav>
