@@ -40,7 +40,7 @@ const Search = () => {
                 <div className="text-xl mb-5 my-5 text-slate-200">
                     <h1>Search</h1>
                 </div>
-                <div className="flex flex-wrap w-4/6">
+                <div className="flex flex-wrap w-5/6">
                     <input
                         type={"search"}
                         className="w-full rounded-lg  outline-sky-800 focus:outline-5 indent-1 border-sky-700 px-1 py-2 text-slate-900"
@@ -64,7 +64,7 @@ const Search = () => {
                                                     href={
                                                         "/film/" + value.title
                                                     }
-                                                    className="flex flex-col flex-1"
+                                                    className="flex flex-col w-36"
                                                 >
                                                     <div className="img justify-center flex">
                                                         <img

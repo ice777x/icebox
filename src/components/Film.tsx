@@ -29,7 +29,7 @@ const Film: React.FC = () => {
         }
     }, [data]);
     return (
-        <div className="w-full">
+        <div className="w-full my-3">
             <div className="wrapper flex flex-row flex-wrap gap-y-10 w-full sm:w-[calc(80%)] mx-auto">
                 {data
                     ? Object.entries(data).map(([k, value], i) => {
