@@ -2,14 +2,6 @@ import axios from "axios";
 import React from "react";
 import { useParams } from "react-router-dom";
 
-interface Data {
-    imdb: string;
-    title: string;
-    url: string;
-    vid?: string;
-    img: string;
-    year: string;
-}
 const FilmPlayer = () => {
     const { url } = useParams<string>();
     const [data, setData]: any = React.useState<
@@ -35,7 +27,12 @@ const FilmPlayer = () => {
         return (
             <div className="justify-center flex mx-auto  sm:w-[calc(90%)] ">
                 <div className="flex justify-center mx-auto w-full  shadow-slate-200 flex-wrap  h-full">
-                    <div className="justify-center p-2  w-full  flex mx-auto ">
+                    <div className="title w-full text-lg border-b-2 border-slate-400 py-2 mb-3 justify-start">
+                        {vid_data.titles[1] !== ""
+                            ? vid_data.titles.join(" - ")
+                            : vid_data.titles[0]}
+                    </div>
+                    <div className="video-player justify-center p-2  w-full  flex mx-auto ">
                         <div className="player mx-auto justify-center flex w-full ">
                             <iframe
                                 className="w-[calc(90%)] aspect-video"

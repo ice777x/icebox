@@ -5,7 +5,7 @@ import Header from "./components/Header";
 const Layout = () => {
     return (
         <>
-            <div className="bg-white dark:bg-slate-900 dark:text-slate-400">
+            <div className="bg-white dark:bg-slate-900 min-h-screen dark:text-slate-400">
                 <Header />
                 <Outlet />
             </div>

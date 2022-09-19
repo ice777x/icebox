@@ -4,36 +4,45 @@ import LastFilm from "./LastFilm";
 
 const Search = () => {
     const [data, setData] = React.useState<any>(null);
+    const [filtered, setFiltered] = React.useState<any>(null);
+    const [search, setSearch] = React.useState<string>("");
+    React.useEffect(() => {
+        const fetchData = async () => {
+            const response = await axios.get(
+                "http://20.14.91.241:5000/api/film"
+            );
+            const f_data = await response.data;
+            setData(f_data);
+        };
+        fetchData();
+        console.log("1");
+        return () => {
+            console.log("unmounting...");
+        };
+    }, []);
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { value } = e.target;
         if (value === "") {
-            return setData(null);
+            return setFiltered(null);
         } else {
             if (data) {
                 const fl = {};
-                const filtered = Object.entries(data).filter(([k, item]: any) =>
-                    item.title.toLowerCase().includes(value.toLowerCase())
+                const filtered = Object.entries(data.data).filter(
+                    ([k, item]: any) =>
+                        item.title.toLowerCase().includes(value.toLowerCase())
                 );
                 if (filtered) {
                     filtered.map(([k, item]: any) => {
                         Object.assign(fl, { [k]: item });
                     });
-                    setData(fl);
+                    setFiltered(fl);
                 } else {
-                    setData(null);
                 }
-            } else {
-                const fetchData = async () => {
-                    const response = await axios.get(
-                        "http://20.14.91.241:5000/api/film"
-                    );
-                    const f_data = await response.data;
-                    setData(f_data.data);
-                };
-                fetchData();
             }
         }
     };
+
     return (
         <div className="w-[calc(80%)] mx-auto">
             <div className="flex flex-col items-center ">
@@ -47,12 +56,14 @@ const Search = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div className="flex w-full mx-auto flex-row flex-wrap gap-y-10 my-5 ">
-                    {data ? (
+                <div className="flex w-full mx-auto flex-row flex-wrap gap-y-10 gap-x-2 my-5 ">
+                    {filtered ? (
                         <>
-                            <div className="w-full border-b-2 border-slate-500" />
-
-                            {Object.entries(data).map(
+                            <div
+                                key={"hr"}
+                                className="w-full border-b-2 border-slate-500"
+                            />
+                            {Object.entries(filtered).map(
                                 ([k, value]: any, i: number) => {
                                     return (
                                         <React.Fragment key={i}>
@@ -64,7 +75,7 @@ const Search = () => {
                                                     href={
                                                         "/film/" + value.title
                                                     }
-                                                    className="flex flex-col w-36"
+                                                    className="flex flex-col w-40"
                                                 >
                                                     <div className="img justify-center flex">
                                                         <img

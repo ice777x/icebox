@@ -14,20 +14,17 @@ const Film: React.FC = () => {
     const effectRen = React.useRef(false);
 
     React.useEffect(() => {
-        if (effectRen.current === false) {
-            const fetchData = async () => {
-                const veri = await axios.get(
-                    "http://20.14.91.241:5000/api/film"
-                );
-                const f_data = await veri.data;
-                setData(f_data.data);
-            };
-            fetchData();
-            return () => {
-                effectRen.current = true;
-            };
-        }
-    }, [data]);
+        const fetchData = async () => {
+            const veri = await axios.get("http://20.14.91.241:5000/api/film");
+            const f_data = await veri.data;
+            setData(f_data.data);
+        };
+        fetchData();
+        // fetchData();
+        return () => {
+            console.log("unmount");
+        };
+    }, []);
     return (
         <div className="w-full my-3">
             <div className="wrapper flex flex-row flex-wrap gap-y-10 w-full sm:w-[calc(80%)] mx-auto">

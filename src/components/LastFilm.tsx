@@ -16,7 +16,7 @@ const LastFilm = () => {
     }, []);
     return (
         <>
-            <div className="flex w-full   flex-row justify-between md:container flex-wrap gap-y-10 mx-auto">
+            <div className="flex w-full   flex-row justify-between md:container flex-wrap gap-y-10 gap-x-2 mx-auto">
                 {data ? (
                     <>
                         <div className="w-full border-b-2 border-slate-500" />
@@ -25,11 +25,11 @@ const LastFilm = () => {
                                 <>
                                     <div
                                         key={i}
-                                        className="mx-auto  text-slate-500 hover:text-slate-200 rounded-lg shadow-xl bg-slate-800/15 hover:bg-slate-800/20"
+                                        className="mx-auto text-slate-500 hover:text-slate-200 rounded-lg shadow-xl bg-slate-800/15 hover:bg-slate-800/20"
                                     >
                                         <a
                                             href={"/film/" + value.title}
-                                            className="flex flex-col w-36"
+                                            className="flex flex-col w-40"
                                         >
                                             <div className="img  sm:w-full justify-center flex">
                                                 <img
